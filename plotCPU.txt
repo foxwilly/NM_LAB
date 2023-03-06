@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+import csv
+import numpy as np
+import matplotlib.pyplot as plt
+import argparse
+from os import path
+
+
+def ArgParse_Helper():
+    parser = argparse.ArgumentParser(description='Script to show the to 10 car theft base cartheft.csv fiel')
+    parser.add_argument("-version", action="version", version="1.0")
+    args = parser.parse_args()
+    return args
+
+
+# main function to read a csv file and calculate the top 10
+def main():
+    args = ArgParse_Helper()
+
+    xaxis = []
+    yaxis = []
+
+    # To check if file exist
+    if path.exists('data.csv'):
+        print("The file exists")
+        #To read the file an populate the data in the list top10
+        with open('data.csv','r') as f:
+            reader=csv.reader(f)
+            for row in reader:
+                if row:
+                    xaxis.append(row[0])
+                    yaxis.append(row[1])
+        index = np.arange(len(yaxis))
+        barWidth=0.4
+
+        # creating the bar plot
+        plt.bar(index,yaxis,barWidth ,color='maroon')
+
+        #labels
+        plt.xlabel("date")
+        plt.ylabel("cpu")
+        plt.title("Overall CPU utilization of a Cisco router ")
+
+        plt.xticks(index, xaxis,fontsize=7,rotation=30)
+        plt.show()
+
+if __name__ == '__main__':
+    main()
