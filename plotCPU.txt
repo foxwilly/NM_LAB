@@ -12,8 +12,10 @@ def ArgParse_Helper():
     args = parser.parse_args()
     return args
 
+# by Willy Fernandez
+# 03/06/23
 
-# main function to read a csv file and calculate the top 10
+# main funtion to ploy the cpu usage extracte with script NMsnmp.py with easysnmp lib
 def main():
     args = ArgParse_Helper()
 
@@ -23,7 +25,7 @@ def main():
     # To check if file exist
     if path.exists('data.csv'):
         print("The file exists")
-        #To read the file an populate the data in the list top10
+        # to read the data to plot
         with open('data.csv','r') as f:
             reader=csv.reader(f)
             for row in reader:
